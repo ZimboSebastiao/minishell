@@ -62,8 +62,6 @@ plano mais recentemente executado.
 	- [x] **unset** sem opções.
 	- [x] **env** sem opções ou argumentos.
 	- [x] **exit** sem opções.
-- [x] 
-- [x] 
 
 ## 🔧 Instalação e Compilação
 
