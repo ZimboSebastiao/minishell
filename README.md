@@ -19,7 +19,7 @@
 
 ## Sobre o Projeto
 
-**Minishell** é um projeto
+**Minishell** é um projeto que se baseia em um interpretador de comandos shell que interage com o Sistema Operacional, automatiza tarefas repetitivas, gerencia arquivos e executa comandos diretamente do kernel.
 
 ## Funcionalidades
 
