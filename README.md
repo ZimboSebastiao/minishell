@@ -106,6 +106,6 @@ Se este projeto foi útil para você, considere dar uma estrela ⭐
 
 ---
 
-**minishell** • Projeto 42 São Paulo • Desenvolvido com 💙
+**minishell** • Projeto 42 São Paulo • Desenvolvido Por Zimbo & Etelvina 💙
 
 </div>
