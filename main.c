@@ -6,7 +6,15 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:07:06 by zimbo             #+#    #+#             */
-/*   Updated: 2026/01/24 19:07:07 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/02 23:59:48 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+
+int	main(int argc, char **argv)
+{
+	ft_shell_loop();
+
+	return (EXIT_SUCCESS);
+}
