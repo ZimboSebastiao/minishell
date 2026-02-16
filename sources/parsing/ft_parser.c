@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:20:11 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 04:02:15 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/16 04:24:51 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_add_redir(t_redir **list, t_redir *new)
 	tmp->next = new;
 }
 
-static t_redir_type	ft_token_to_redir(t_redir_type type)
+static t_redir_type	ft_token_to_redir(t_token_type type)
 {
 	if (type == TOKEN_REDIR_IN)
 		return (REDIR_IN);
@@ -106,7 +106,7 @@ t_cmd	*ft_parser(t_token *tokens)
 		{
 			if (temp->type == TOKEN_WORD)
 				arg_count++;
-			temp = temp->new;
+			temp = temp->next;
 		}
 		args = malloc(sizeof(char *) * (arg_count + 1));
 		if (!args)
@@ -114,7 +114,7 @@ t_cmd	*ft_parser(t_token *tokens)
 		i = 0;
 		while (current && current->type != TOKEN_PIPE)
 		{
-			if (current->type = TOKEN_WORD)
+			if (current->type == TOKEN_WORD)
 			{
 				args[i] = ft_strdup(current->value);
 				i++;
@@ -123,7 +123,11 @@ t_cmd	*ft_parser(t_token *tokens)
 			{
 				if (current->next && current->next->type == TOKEN_WORD)
 				{
-					t_redir *redir = ft_new_redir(ft_token_to_redir(current->type), ft_strdup(current->next->value));
+					t_redir *redir = ft_new_redir(
+						ft_token_to_redir(current->type),
+						ft_strdup(current->next->value)
+					);
+					ft_add_redir(&current_cmd->redirs, redir);
 					current = current->next;
 				}
 			}

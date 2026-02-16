@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 23:39:16 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 02:22:53 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/16 04:15:10 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_token	*ft_read_operator(char **line)
 			return (ft_new_token(TOKEN_HEREDOC, NULL));
 		}
 		(*line)++;
-		return (ft_new_token(TOKEN_REDIR_IN), NULL);
+		return (ft_new_token(TOKEN_REDIR_IN, NULL));
 	}
 	else if (**line == '>')
 	{
@@ -109,7 +109,7 @@ t_token	*ft_lexer(char *input)
 	t_token	*list;
 	t_token	*new_token;
 
-	*list = NULL;
+	list = NULL;
 	while (*input)
 	{
 		ft_skip_spaces(&input);

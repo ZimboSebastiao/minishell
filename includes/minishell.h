@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 04:03:12 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/16 04:20:30 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 extern int g_signal;
 
-typedef	enum e_token_type
+typedef enum e_token_type
 {
 	TOKEN_WORD,
 	TOKEN_PIPE,
@@ -94,12 +94,10 @@ void	ft_skip_spaces(char **line);
 t_token	*ft_read_word(char **line);
 t_token	*ft_lexer(char *input);
 int		ft_is_operator(char	c);
-void	ft_shell_loop(void);
-
 
 /* Parsing */
 t_redir	*ft_new_redir(t_redir_type type, char *file);
-void	*ft_add_redir(t_redir **list, t_redir *new);
+void	ft_add_redir(t_redir **list, t_redir *new);
 void	ft_add_cmd(t_cmd **list, t_cmd *new);
 t_cmd	*ft_parser(t_token *tokens);
 t_cmd	*ft_new_cmd(void);
