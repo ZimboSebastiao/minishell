@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 03:06:12 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/16 03:18:52 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ typedef struct	s_shell
 	int		stdout_backup;
 }	t_shell;
 
+/* Loop principal */
+void	ft_shell_loop(t_env *env);
+
 /* Tokenização */
 t_token	*ft_new_token(t_token_type type, char *value);
 void	ft_add_token(t_token **list, t_token *new);
@@ -92,8 +95,6 @@ t_token	*ft_lexer(char *input);
 int		ft_is_operator(char	c);
 void	ft_shell_loop(void);
 
-/* Loop principal */
-void	ft_shell_loop(t_env *env);
 
 /* Parsing */
 t_redir	*ft_new_redir(t_redir_type type, char *file);
