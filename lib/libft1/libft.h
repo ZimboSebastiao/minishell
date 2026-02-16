@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zalberti <zalberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:18:07 by zalberti          #+#    #+#             */
-/*   Updated: 2025/07/31 22:26:47 by zalberti         ###   ########.fr       */
+/*   Updated: 2026/02/16 02:06:55 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strrchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
+char	*ft_strndup(const char *s, int n);
 char	*ft_strchr(const char *s, int c);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);

@@ -6,11 +6,23 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 22:52:07 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/03 00:03:13 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/16 02:43:08 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_free_tokens(t_token *list)
+{
+	t_token	*tmp.
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp->value);
+		free(tmp);
+	}
+}
 
 void	ft_free_args(char **args)
 {
@@ -44,7 +56,7 @@ void	ft_shell_loop(void)
 		}
 		if (*line)
 			add_history(line);
-		args = ft_split_line(line);
+		args = ft_lexer(line);
 		status = ft_executor(args);
 
 		free(line);
