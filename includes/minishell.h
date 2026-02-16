@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 03:18:52 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/16 04:03:12 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_shell
 
 /* Loop principal */
 void	ft_shell_loop(t_env *env);
+void	ft_handle_signal(int sig);
 
 /* Tokenização */
 t_token	*ft_new_token(t_token_type type, char *value);
