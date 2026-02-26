@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 22:52:07 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 04:27:02 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:18:39 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_shell_loop(t_env *env)
 			{
 				shell.cmds = cmds;
 				(void)shell;
-				// ft_expand_variables(cmds, env, shell.exit_status);
+				ft_expand_variables(cmds, env, shell.exit_status);
 				// ft_executor(&shell);
 				ft_free_cmds(cmds);
 			}

@@ -6,9 +6,11 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:54:12 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/25 23:57:21 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:17:58 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 void ft_put_error(char *s1, char *s2, char *s3)
 {
