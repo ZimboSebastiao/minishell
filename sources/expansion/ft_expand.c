@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:05:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/25 23:45:16 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/25 23:52:36 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,4 +197,36 @@ char	*ft_expand_str(char *str, t_env *env, int exit_status)
 		result = new_result;
 	}
 	return (result);
+}
+
+void	ft_expand_variables(t_cmd *cmds, t_env *env, int exit_status)
+{
+	char	*expanded;
+	t_cmd	*cmd;
+	int		i;
+
+	cmd = cmds;
+	while (cmd)
+	{
+		i = 0;
+		while (cmd->args && cmd->args[i])
+		{
+			expanded = ft_expand_str(cmd->args[i], env, exit_status);
+			free(cmd->args[i]);
+			cmd->args[i] = expanded;
+			i++;
+		}
+		t_redir	*redir = cmd->redirs;
+		while (redir)
+		{
+			if (redir->file && redir->type != REDIR_HEREDOC)
+			{
+				expanded = ft_expand_str(redir->file, env, exit_status);
+				free(redir->file);
+				redir->file = expanded;
+			}
+			redir = redir->next;
+		}
+		cmd = cmd->next;
+	}
 }
