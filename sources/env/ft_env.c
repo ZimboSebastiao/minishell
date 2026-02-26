@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 02:04:35 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/25 02:24:08 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/25 23:03:32 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,60 @@ void	ft_set_env(char *key, char *value, t_env **env)
 	}
 	new = ft_new_env_node(ft_strdup(key), ft_strdup(value));
 	ft_add_env_node(env, new);
+}
+
+void ft_unset_env(char *key, t_env **env)
+{
+	t_env	*current;
+	t_env	*prev;
+
+	current = *env;
+	prev = NULL;
+	while (current)
+	{
+		if (ft_strcmp(current->key, key) == 0)
+		{
+			if (prev)
+				prev->next = current->next;
+			else
+				*env = current->next;
+			free(current->key);
+			free(current->value);
+			free(current);
+			return ;
+		}
+		prev = current;
+		current = current->next;
+	}
+}
+
+char **ft_env_to_array(t_env *env)
+{
+	char	**array;
+	char	*joined;
+	t_env	*tmp;
+	int		count;
+	int		i;
+
+	count = 0;
+	tmp = env;
+	while (tmp)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	array = malloc(sizeof(char *) * (count + 1));
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (env)
+	{
+		joined = ft_strjoin(env->key, "=");
+		array[i] = ft_strjoin(joined, env->value);
+		free(joined);
+		i++;
+		env = env->next;
+	}
+	array[i] = NULL;
+	return (array);
 }
