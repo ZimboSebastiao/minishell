@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 04:20:30 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/25 23:59:08 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	ft_free_env(t_env *env);
 
 /* Utilitários */
 void	ft_put_error(char *s1, char *s2, char *s3);
-int		ft_strcmp(const char *s1, const char *s2);
 void	ft_free_redirs(t_redir *redirs);
 void	ft_free_cmds(t_cmd *cmds);
 
