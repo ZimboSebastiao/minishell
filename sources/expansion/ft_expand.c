@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:05:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/25 23:52:36 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:16:46 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static char	*ft_get_var_name(char *str, int *i)
 		(*i)++;
 		return (ft_strdup("?"));
 	}
-	while (str[*i] && (ft_isalmun(str[*i]) || str[*i] == '-'))
+	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '-'))
 		(*i)++;
 	var_name = ft_strndup(str + start, *i - start);
 	return (var_name);
 }
 
-static char	ft_get_var_value(char *var_name, t_env *env, int exit_status)
+static char	*ft_get_var_value(char *var_name, t_env *env, int exit_status)
 {
 	char	*value;
 
@@ -58,7 +58,7 @@ static char	*ft_process_quotes(char *str, int *i, char quote)
 		(*i)++;
 	result = ft_strndup(str + start, *i - start);
 	if (str[*i] == quote)
-		(*)++;
+		(*i)++;
 	return (result);
 }
 
@@ -76,7 +76,7 @@ static char	*ft_expand_double_quotes(char *str, int *i, t_env *env, int exit_sta
 	char	*temp;
 	int		start;
 
-	(*)++;
+	(*i)++;
 	start = *i;
 	result = ft_strdup("");
 	while (str[*i] && str[*i] != '"')
@@ -101,7 +101,7 @@ static char	*ft_expand_double_quotes(char *str, int *i, t_env *env, int exit_sta
 			start = *i;
 		}
 		else
-			(*)++;
+			(*i)++;
 	}
 	if (*i > start)
 	{
