@@ -6,13 +6,13 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 02:04:35 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/25 23:03:32 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:08:02 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	t_env	ft_new_env_node(char *key, char *value)
+static	t_env	*ft_new_env_node(char *key, char *value)
 {
 	t_env	*new;
 
@@ -86,7 +86,7 @@ void	ft_free_env(t_env *env)
 		tmp = env;
 		env = env->next;
 		if (tmp->key)
-			free(tmp->key)
+			free(tmp->key);
 		if (tmp->value)
 			free(tmp->value);
 		free(tmp);

@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/25 23:59:08 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:07:26 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef	struct s_env
 {
 	char			*key;
 	char			*value;
-	struct s_env	*new;
+	struct s_env	*next;
 }	t_env;
 
 typedef struct	s_shell

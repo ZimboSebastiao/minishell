@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:07:06 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/16 04:28:38 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:02:21 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGINT, ft_handle_signal);
 	signal(SIGQUIT, SIG_IGN);
 
-	// env = ft_init_env(envp);
+	env = ft_init_env(envp);
 	ft_shell_loop(env);
-	// ft_free_env(env);
+	ft_free_env(env);
 
 	return (EXIT_SUCCESS);
 }
