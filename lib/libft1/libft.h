@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:18:07 by zalberti          #+#    #+#             */
-/*   Updated: 2026/02/16 02:06:55 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/26 00:11:20 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_memchr(const void *s, int c, size_t n);
+int	ft_strcmp(const char *s1, const char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strrchr(const char *s, int c);

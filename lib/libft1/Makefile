@@ -6,10 +6,6 @@ FLAGS = -Wall -Wextra -Werror -I includes
 SRC := $(shell find . -type f -name "*.c")
 OBJECTS = $(SRC:.c=.o)
 
-
-
-
-
 NAME = libft.a
 
 all: $(NAME)
