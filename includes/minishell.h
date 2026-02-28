@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/02/26 00:07:26 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/02/28 11:36:16 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,5 @@ void	ft_free_env(t_env *env);
 void	ft_put_error(char *s1, char *s2, char *s3);
 void	ft_free_redirs(t_redir *redirs);
 void	ft_free_cmds(t_cmd *cmds);
-
 
 #endif
