@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 14:40:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:35:38 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:59:13 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,38 @@ static int	has_quotes(char *str)
 	return (0);
 }
 
-static char	*remove_quotes_from_delimiter(char *delimiter)
+static void	process_delimiter_char(char c, t_quote_state *state, char *result)
 {
-	char	*result;
-	int		i;
-	int		j;
-	int		in_quote;
-	char	quote_char;
+	if (!state->in_quote && (c == '\'' || c == '"'))
+	{
+		state->quote_char = c;
+		state->in_quote = 1;
+	}
+	else if (state->in_quote && c == state->quote_char)
+		state->in_quote = 0;
+	else
+		result[state->j++] = c;
+}
+
+char	*remove_quotes_from_delimiter(char *delimiter)
+{
+	char			*result;
+	int				i;
+	t_quote_state	state;
 
 	result = malloc(ft_strlen(delimiter) + 1);
 	if (!result)
 		return (NULL);
 	i = 0;
-	j = 0;
-	in_quote = 0;
-	quote_char = 0;
+	state.in_quote = 0;
+	state.quote_char = 0;
+	state.j = 0;
 	while (delimiter[i])
 	{
-		if (!in_quote && (delimiter[i] == '\'' || delimiter[i] == '"'))
-		{
-			quote_char = delimiter[i];
-			in_quote = 1;
-		}
-		else if (in_quote && delimiter[i] == quote_char)
-			in_quote = 0;
-		else
-			result[j++] = delimiter[i];
+		process_delimiter_char(delimiter[i], &state, result);
 		i++;
 	}
-	result[j] = '\0';
+	result[state.j] = '\0';
 	return (result);
 }
 
