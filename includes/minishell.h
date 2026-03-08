@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:44:01 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:47:09 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_shell_loop(t_env *env);
 void	ft_handle_signal(int sig);
 
 /* Tokenização */
+t_token	*handle_redirection(char **line, char current);
 t_token	*ft_new_token(t_token_type type, char *value);
 void	ft_add_token(t_token **list, t_token *new);
 t_token	*ft_read_operator(char **line);

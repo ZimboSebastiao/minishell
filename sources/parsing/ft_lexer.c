@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 23:39:16 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:37:15 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:47:40 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,16 @@ void	ft_add_token(t_token **list, t_token *new)
 
 t_token	*ft_read_operator(char **line)
 {
-	if (**line == '|')
+	char	current;
+
+	current = **line;
+	if (current == '|')
 	{
 		(*line)++;
 		return (ft_new_token(TOKEN_PIPE, NULL));
 	}
-	else if (**line == '<')
-	{
-		if (*(*line + 1) == '<')
-		{
-			(*line) += 2;
-			return (ft_new_token(TOKEN_HEREDOC, NULL));
-		}
-		(*line)++;
-		return (ft_new_token(TOKEN_REDIR_IN, NULL));
-	}
-	else if (**line == '>')
-	{
-		if (*(*line + 1) == '>')
-		{
-			(*line) += 2;
-			return (ft_new_token(TOKEN_APPEND, NULL));
-		}
-		(*line)++;
-		return (ft_new_token(TOKEN_REDIR_OUT, NULL));
-	}
+	else if (current == '<' || current == '>')
+		return (handle_redirection(line, current));
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:54:12 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:45:10 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:46:20 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ t_redir_type	ft_token_to_redir(t_token_type type)
 	if (type == TOKEN_HEREDOC)
 		return (REDIR_HEREDOC);
 	return (REDIR_IN);
+}
+
+void	ft_skip_spaces(char **line)
+{
+	while (**line == ' ' || **line == '\t')
+		(*line)++;
 }

@@ -6,16 +6,35 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:36:43 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:44:52 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:47:30 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_skip_spaces(char **line)
+t_token	*handle_redirection(char **line, char current)
 {
-	while (**line == ' ' || **line == '\t')
+	if (current == '<')
+	{
+		if (*(*line + 1) == '<')
+		{
+			(*line) += 2;
+			return (ft_new_token(TOKEN_HEREDOC, NULL));
+		}
 		(*line)++;
+		return (ft_new_token(TOKEN_REDIR_IN, NULL));
+	}
+	else if (current == '>')
+	{
+		if (*(*line + 1) == '>')
+		{
+			(*line) += 2;
+			return (ft_new_token(TOKEN_APPEND, NULL));
+		}
+		(*line)++;
+		return (ft_new_token(TOKEN_REDIR_OUT, NULL));
+	}
+	return (NULL);
 }
 
 int	ft_is_operator(char c)
