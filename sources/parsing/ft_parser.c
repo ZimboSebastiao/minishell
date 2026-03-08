@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:20:11 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:46:51 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:38:40 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	parse_redirection(t_token **current, t_cmd *cmd)
 
 	if ((*current)->next && (*current)->next->type == TOKEN_WORD)
 	{
-
 		redir = ft_new_redir(
 				ft_token_to_redir((*current)->type),
 				ft_strdup((*current)->next->value)
