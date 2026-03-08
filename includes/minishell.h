@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:57 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/08 00:47:09 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 01:08:19 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,9 @@ void	child_exec(t_cmd *cmd, t_shell *sh);
 char	*resolve_path(char *cmd, t_env *env);
 void	wait_children(t_shell *shell);
 void	update_exit_status(int status, t_shell *shell);
+int		resolve_cmd(t_cmd *c, t_shell *sh);
+void	close_fds(t_cmd *cmd, int pipe_fd[2], int prev_pipe);
+void	fork_and_exec(t_cmd *cmd, t_shell *sh, int cmd_ok);
 
 /* Redirecionamentos */
 int		setup_pipe(t_cmd *cmd, int pipe_fd[2]);
