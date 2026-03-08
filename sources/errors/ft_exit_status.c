@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_status.c                                      :+:      :+:    :+:   */
+/*   exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -34,14 +34,14 @@ int	get_permission_denied_status(char *cmd)
 	return (1);
 }
 
-void	set_exit_status_from_signal(int sig, t_shell *shell)
+void	set_exit_from_signal(int sig, t_shell *shell)
 {
 	if (sig == SIGINT)
-		shell->exit_status = 130;
+		shell->exit = 130;
 	else if (sig == SIGQUIT)
-		shell->exit_status = 131;
+		shell->exit = 131;
 	else
-		shell->exit_status = 128 + sig;
+		shell->exit = 128 + sig;
 }
 
 int	get_redir_error_status(void)

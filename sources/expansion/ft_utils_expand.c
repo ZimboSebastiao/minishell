@@ -6,95 +6,73 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:13:58 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:19:38 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_get_var_name(char *str, int *i)
+static char	*append_before_dollar(t_dollar_data *d)
 {
-	int		start;
-	char	*var_name;
+	char	*temp;
+	char	*new_result;
 
-	(*i)++;
-	start = *i;
-	if (str[*i] == '?')
+	if (*d->i > *d->start)
 	{
-		(*i)++;
-		return (ft_strdup("?"));
+		temp = ft_strndup(d->str + *d->start, *d->i - *d->start);
+		new_result = ft_strjoin(d->result, temp);
+		free(d->result);
+		free(temp);
+		d->result = new_result;
 	}
-	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '_'))
-		(*i)++;
-	var_name = ft_strndup(str + start, *i - start);
-	return (var_name);
+	return (d->result);
 }
 
-char	*ft_get_var_value(char *var_name, t_env *env, int exit_status)
-{
-	char	*value;
-
-	if (ft_strcmp(var_name, "?") == 0)
-		value = ft_itoa(exit_status);
-	else
-	{
-		value = ft_get_env(var_name, env);
-		if (value)
-			value = ft_strdup(value);
-		else
-			value = ft_strdup("");
-	}
-	return (value);
-}
-
-char	*ft_process_quotes(char *str, int *i, char quote)
-{
-	int		start;
-	char	*result;
-
-	(*i)++;
-	start = *i;
-	while (str[*i] && str[*i] != quote)
-		(*i)++;
-	result = ft_strndup(str + start, *i - start);
-	if (str[*i] == quote)
-		(*i)++;
-	return (result);
-}
-
-char	*ft_handle_dollar(char *str, int *i, int *start,
-			char *result, t_env *env, int exit_status)
+static char	*expand_and_append_var(t_dollar_data *d)
 {
 	char	*var_name;
 	char	*var_value;
 	char	*new_result;
-	char	*temp;
 
-	if (*i > *start)
+	var_name = ft_get_var_name(d->str, d->i);
+	var_value = ft_get_var_value(var_name, d->env, d->exit);
+	free(var_name);
+	new_result = ft_strjoin(d->result, var_value);
+	free(d->result);
+	free(var_value);
+	d->result = new_result;
+	*d->start = *d->i;
+	return (d->result);
+}
+
+char	*ft_handle_dollar(t_dollar_data *d)
+{
+	d->result = append_before_dollar(d);
+	d->result = expand_and_append_var(d);
+	return (d->result);
+}
+
+static char	*append_remaining_text(char *str, int start, int i, char *result)
+{
+	char	*temp;
+	char	*new_result;
+
+	if (i > start)
 	{
-		temp = ft_strndup(str + *start, *i - *start);
+		temp = ft_strndup(str + start, i - start);
 		new_result = ft_strjoin(result, temp);
 		free(result);
 		free(temp);
 		result = new_result;
 	}
-	var_name = ft_get_var_name(str, i);
-	var_value = ft_get_var_value(var_name, env, exit_status);
-	free(var_name);
-	new_result = ft_strjoin(result, var_value);
-	free(result);
-	free(var_value);
-	result = new_result;
-	*start = *i;
 	return (result);
 }
 
-char	*ft_expand_double_quotes(char *str, int *i, t_env *env, int exit_status)
+char	*ft_expd_quotes(char *str, int *i, t_env *env, int exit)
 {
-	int		start;
-	char	*result;
-	char	*new_result;
-	char	*temp;
+	int				start;
+	char			*result;
+	t_dollar_data	d;
 
 	(*i)++;
 	start = *i;
@@ -102,18 +80,19 @@ char	*ft_expand_double_quotes(char *str, int *i, t_env *env, int exit_status)
 	while (str[*i] && str[*i] != '"')
 	{
 		if (str[*i] == '$')
-			result = ft_handle_dollar(str, i, &start, result, env, exit_status);
+		{
+			d.str = str;
+			d.i = i;
+			d.start = &start;
+			d.result = result;
+			d.env = env;
+			d.exit = exit;
+			result = ft_handle_dollar(&d);
+		}
 		else
 			(*i)++;
 	}
-	if (*i > start)
-	{
-		temp = ft_strndup(str + start, *i - start);
-		new_result = ft_strjoin(result, temp);
-		free(result);
-		free(temp);
-		result = new_result;
-	}
+	result = append_remaining_text(str, start, *i, result);
 	if (str[*i] == '"')
 		(*i)++;
 	return (result);

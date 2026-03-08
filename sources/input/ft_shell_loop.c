@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 22:52:07 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:21:22 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	process_line(char *line, t_shell *shell)
 	if (cmds)
 	{
 		shell->cmds = cmds;
-		ft_expand_variables(cmds, shell->env_list, shell->exit_status);
-		shell->exit_status = executor(cmds, shell);
+		ft_expand_variables(cmds, shell->env_list, shell->exit);
+		shell->exit = executor(cmds, shell);
 		ft_free_cmds(cmds);
 	}
 	ft_free_tokens(tokens);
@@ -50,7 +50,7 @@ void	ft_shell_loop(t_env *env)
 	t_shell	shell;
 
 	shell.env_list = env;
-	shell.exit_status = 0;
+	shell.exit = 0;
 	while (1)
 	{
 		line = readline("minishell> ");

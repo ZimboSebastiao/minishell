@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor_error.c                                   :+:      :+:    :+:   */
+/*   ft_executor_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 15:05:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:08:59 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	check_cmd_access(t_cmd *c, t_shell *sh)
 		if (ft_strchr(c->args[0], '/'))
 		{
 			if (access(c->args[0], F_OK) == -1)
-				sh->exit_status = 127;
+				sh->exit = 127;
 			else if (access(c->args[0], X_OK) == -1)
-				sh->exit_status = 126;
+				sh->exit = 126;
 		}
 		else
-			sh->exit_status = 127;
+			sh->exit = 127;
 		ft_put_error(c->args[0], NULL, "command not found");
 		return (0);
 	}
@@ -51,7 +51,7 @@ int	validate_cmd(t_cmd *cmd, t_shell *sh)
 			if (redir->type == REDIR_IN && access(redir->file, R_OK) == -1)
 			{
 				perror(redir->file);
-				sh->exit_status = 1;
+				sh->exit = 1;
 				ret = 0;
 			}
 		}

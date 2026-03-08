@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 01:06:42 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/08 01:08:40 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	resolve_cmd(t_cmd *c, t_shell *sh)
 	if (!path)
 	{
 		ft_put_error(c->args[0], NULL, "command not found");
-		sh->exit_status = 127;
+		sh->exit = 127;
 		return (0);
 	}
 	free(path);

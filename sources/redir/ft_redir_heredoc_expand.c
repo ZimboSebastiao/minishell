@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_heredoc_expand.c                             :+:      :+:    :+:   */
+/*   ft_redir_heredoc_expand.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 14:30:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:49:28 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*expand_heredoc_line(char *line, t_shell *shell)
 	if (!line)
 		return (NULL);
 	if (ft_strchr(line, '$'))
-		expanded = ft_expand_str(line, shell->env_list, shell->exit_status);
+		expanded = ft_expand_str(line, shell->env_list, shell->exit);
 	else
 		expanded = ft_strdup(line);
 	return (expanded);

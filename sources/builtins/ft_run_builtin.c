@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_builtin.c                                      :+:      :+:    :+:   */
+/*   ft_run_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:30:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 00:57:48 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	run_builtin(t_cmd *cmd, t_shell *shell)
 	if (apply_redirections(cmd) != 0)
 	{
 		restore_std_fds(save_stdin, save_stdout);
-		shell->exit_status = 1;
+		shell->exit = 1;
 		return (1);
 	}
 	status = exec_builtin_cmd(cmd, shell);
 	restore_std_fds(save_stdin, save_stdout);
-	shell->exit_status = status;
+	shell->exit = status;
 	return (status);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_exit_status.c                               :+:      :+:    :+:   */
+/*   update_exit.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,10 @@
 
 #include "minishell.h"
 
-void	update_exit_status(int status, t_shell *shell)
+void	update_exit(int status, t_shell *shell)
 {
 	if (WIFEXITED(status))
-		shell->exit_status = WEXITSTATUS(status);
+		shell->exit = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
-		shell->exit_status = 128 + WTERMSIG(status);
+		shell->exit = 128 + WTERMSIG(status);
 }

@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:12:09 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/08 01:08:49 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	exec_single_builtin(t_cmd *cmd, t_shell *sh, int cmd_ok)
 {
 	if (!cmd_ok)
 		return (1);
-	sh->exit_status = run_builtin(cmd, sh);
+	sh->exit = run_builtin(cmd, sh);
 	return (0);
 }
 
@@ -55,5 +55,5 @@ int	executor(t_cmd *list, t_shell *sh)
 		tmp = tmp->next;
 	}
 	wait_children(sh);
-	return (sh->exit_status);
+	return (sh->exit);
 }

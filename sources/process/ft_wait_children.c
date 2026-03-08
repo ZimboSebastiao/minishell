@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_children.c                                    :+:      :+:    :+:   */
+/*   ft_wait_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:30:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:48:33 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	wait_children(t_shell *shell)
 	while (pid > 0)
 	{
 		if (pid == shell->last_pid)
-			update_exit_status(status, shell);
+			update_exit(status, shell);
 		pid = waitpid(-1, &status, 0);
 	}
 }

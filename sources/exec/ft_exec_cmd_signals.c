@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd_signals.c                                 :+:      :+:    :+:   */
+/*   ft_exec_cmd_signals.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 14:50:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/06 01:11:21 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	child_exec_with_signals(t_cmd *cmd, t_shell *sh)
 		exit(1);
 	if (is_builtin(cmd->args[0]))
 	{
-		sh->exit_status = run_builtin(cmd, sh);
-		exit(sh->exit_status);
+		sh->exit = run_builtin(cmd, sh);
+		exit(sh->exit);
 	}
 	handle_child_signals();
 	path = resolve_path(cmd->args[0], sh->env_list);
