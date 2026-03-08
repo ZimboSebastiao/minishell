@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:13:58 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/03/08 03:23:00 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ static char	*append_remaining_text(char *str, int start, int i, char *result)
 
 char	*ft_expd_quotes(char *str, int *i, t_env *env, int exit)
 {
-	int				start;
-	char			*result;
-	t_dollar_data	d;
+	int		start;
+	char	*result;
 
 	(*i)++;
 	start = *i;
@@ -80,15 +79,8 @@ char	*ft_expd_quotes(char *str, int *i, t_env *env, int exit)
 	while (str[*i] && str[*i] != '"')
 	{
 		if (str[*i] == '$')
-		{
-			d.str = str;
-			d.i = i;
-			d.start = &start;
-			d.result = result;
-			d.env = env;
-			d.exit = exit;
-			result = ft_handle_dollar(&d);
-		}
+			result = ft_handle_dollar(&(t_dollar_data){str, i,
+					&start, result, env, exit});
 		else
 			(*i)++;
 	}
