@@ -1,0 +1,14 @@
+arquivo.txt
+includes
+lib
+LICENSE
+main.c
+Makefile
+minishell
+obj
+README.md
+sources
+tests
+valgrind.supp
+teste
+teste
