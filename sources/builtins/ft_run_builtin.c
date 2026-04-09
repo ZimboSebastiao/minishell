@@ -62,7 +62,11 @@ int	ft_run_builtin(t_cmd *cmd, t_shell *shell)
 		shell->exit = 1;
 		return (1);
 	}
+	shell->stdin_backup = save_stdin;
+	shell->stdout_backup = save_stdout;
 	status = ft_exec_builtin_cmd(cmd, shell);
+	shell->stdin_backup = -1;
+	shell->stdout_backup = -1;
 	ft_restore_std_fds(save_stdin, save_stdout);
 	shell->exit = status;
 	return (status);

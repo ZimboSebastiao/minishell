@@ -28,6 +28,19 @@ static int	ft_is_numeric(char *str)
 	return (1);
 }
 
+static void	ft_cleanup_and_exit(t_shell *shell, int status)
+{
+	if (shell->stdin_backup >= 0)
+		close(shell->stdin_backup);
+	if (shell->stdout_backup >= 0)
+		close(shell->stdout_backup);
+	ft_free_cmds(shell->cmds);
+	shell->cmds = NULL;
+	ft_free_env(shell->env_list);
+	rl_clear_history();
+	exit(status);
+}
+
 int	ft_builtin_exit(char **argv, t_shell *shell)
 {
 	int	status;
@@ -48,9 +61,9 @@ int	ft_builtin_exit(char **argv, t_shell *shell)
 	}
 	printf("exit\n");
 	if (argv[1])
-	{
 		status = ft_atoi(argv[1]);
-		exit(status);
-	}
-	exit(shell->exit);
+	else
+		status = shell->exit;
+	ft_cleanup_and_exit(shell, status);
+	return (status);
 }

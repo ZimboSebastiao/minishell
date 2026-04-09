@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 22:52:07 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/04/09 20:03:15 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ static void	ft_process_line(char *line, t_shell *shell)
 	if (!tokens)
 		return ;
 	cmds = ft_parser(tokens);
+	ft_free_tokens(tokens);
 	if (cmds)
 	{
 		shell->cmds = cmds;
 		ft_expand_variables(cmds, shell->env_list, shell->exit);
 		shell->exit = ft_executor(cmds, shell);
 		ft_free_cmds(cmds);
+		shell->cmds = NULL;
 	}
-	ft_free_tokens(tokens);
 }
 
 void	ft_shell_loop(t_env *env)
@@ -51,6 +52,7 @@ void	ft_shell_loop(t_env *env)
 
 	shell.env_list = env;
 	shell.exit = 0;
+	shell.cmds = NULL;
 	while (1)
 	{
 		line = readline("minishell$ ");
@@ -60,5 +62,9 @@ void	ft_shell_loop(t_env *env)
 			add_history(line);
 		ft_process_line(line, &shell);
 		free(line);
+		if (shell.exit == -1)  
+			break ;
 	}
+	ft_free_env(shell.env_list);  
+	rl_clear_history();           
 }

@@ -1,0 +1,13 @@
+# readline.supp
+{
+   readline_leaks
+   Memcheck:Leak
+   ...
+   obj:*/libreadline*
+}
+{
+   libtinfo_leaks
+   Memcheck:Leak
+   ...
+   obj:*/libtinfo*
+}

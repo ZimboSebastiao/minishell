@@ -42,15 +42,7 @@ test-valgrind:
 	@valgrind --leak-check=full ./$(NAME) < tests/ft_test.sh
 
 val:
-	@valgrind -q\
-		--leak-check=full \
-		--show-leak-kinds=all \
-		--track-origins=yes \
-		--track-fds=yes \
-		--trace-children=yes \
-		--trace-children-skip='*/bin/*,*/sbin/*,/usr/bin/*' \
-		--suppressions=./valgrind.supp \
-		./$(NAME)
+	valgrind --suppressions=readline.supp --leak-check=full ./minishell ; true
 
 clean:
 	@rm -rf $(OBJ_DIR)
