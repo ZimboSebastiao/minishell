@@ -74,7 +74,7 @@ static int	ft_wait_for_children(pid_t last_pid, t_shell *sh)
 	return (sh->exit);
 }
 
-int	ft_executor(t_cmd *list, t_shell *sh)
+int ft_executor(t_cmd *list, t_shell *sh)
 {
 	t_cmd	*cmd;
 	int		pipe_fd[2];
@@ -97,5 +97,9 @@ int	ft_executor(t_cmd *list, t_shell *sh)
 		cmd = cmd->next;
 	}
 	ft_close_pipe_fds(pipe_fd, prev_pipe);
-	return (ft_wait_for_children(last_pid, sh));
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	ft_wait_for_children(last_pid, sh);
+	ft_setup_interactive_signals();
+	return (sh->exit);
 }

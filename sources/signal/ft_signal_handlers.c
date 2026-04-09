@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 14:45:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/12 20:02:53 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/04/09 20:46:37 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_setup_child_signals(void)
 	signal(SIGQUIT, ft_handle_signal_child);
 }
 
-void	ft_handle_signal_interactive(int sig)
+void    ft_handle_signal_interactive(int sig)
 {
 	g_signal = sig;
 	if (sig == SIGINT)
@@ -40,7 +40,6 @@ void	ft_handle_signal_interactive(int sig)
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		rl_redisplay();
 	}
 }
 
