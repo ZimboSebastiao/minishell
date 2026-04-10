@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 22:52:07 by zimbo             #+#    #+#             */
-/*   Updated: 2026/04/09 20:03:15 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/04/09 21:41:14 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	ft_shell_loop(t_env *env)
 			add_history(line);
 		ft_process_line(line, &shell);
 		free(line);
-		if (shell.exit == -1)  
+		if (shell.exit == -1)
 			break ;
 	}
-	ft_free_env(shell.env_list);  
-	rl_clear_history();           
+	ft_free_env(shell.env_list);
+	rl_clear_history();
 }

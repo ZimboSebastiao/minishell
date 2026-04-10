@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_executor_error.c                                :+:      :+:    :+:   */
+/*   ft_executor_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/06 15:05:00 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/08 02:55:07 by zimbo            ###   ########.fr       */
+/*   Created: 2026/04/09 21:33:36 by zimbo             #+#    #+#             */
+/*   Updated: 2026/04/09 21:33:46 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_validate_cmd(t_cmd *cmd, t_shell *sh)
 	t_redir	*redir;
 	int		ret;
 
-	// ret = ft_check_cmd_access(cmd, sh);
 	ret = 1;
 	if (cmd->args && cmd->args[0])
 		ret = ft_check_cmd_access(cmd, sh);

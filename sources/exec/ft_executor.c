@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_executor.c                                      :+:      :+:    :+:   */
+/*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/06 01:12:09 by zimbo             #+#    #+#             */
-/*   Updated: 2026/03/12 20:03:31 by zimbo            ###   ########.fr       */
+/*   Created: 2026/04/09 21:36:15 by zimbo             #+#    #+#             */
+/*   Updated: 2026/04/09 21:37:59 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_close_pipe_fds(int pipe_fd[2], int prev_pipe)
 		close(pipe_fd[1]);
 }
 
-static int	ft_execute_command(t_cmd *cmd, t_shell *sh, int pipe_fd[2], int prev)
+int	ft_execute_command(t_cmd *cmd, t_shell *sh, int pipe_fd[2], int prev)
 {
 	pid_t	pid;
 
@@ -74,7 +74,7 @@ static int	ft_wait_for_children(pid_t last_pid, t_shell *sh)
 	return (sh->exit);
 }
 
-int ft_executor(t_cmd *list, t_shell *sh)
+int	ft_executor(t_cmd *list, t_shell *sh)
 {
 	t_cmd	*cmd;
 	int		pipe_fd[2];

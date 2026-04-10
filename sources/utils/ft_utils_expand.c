@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:13:58 by zimbo             #+#    #+#             */
-/*   Updated: 2026/04/09 20:52:25 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/04/09 21:42:58 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	*ft_append_remaining_text(char *str, int start, int i, char *result)
 	return (result);
 }
 
-char    *ft_expd_quotes(char *str, int *i, t_env *env, int exit)
+char	*ft_expd_quotes(char *str, int *i, t_env *env, int exit)
 {
 	int		start;
 	char	*result;
@@ -103,7 +103,7 @@ char    *ft_expd_quotes(char *str, int *i, t_env *env, int exit)
 		if (str[*i] == '$')
 		{
 			result = ft_handle_dollar(&(t_dollar_data){str, i,
-				&start, result, env, exit});
+					&start, result, env, exit});
 		}
 		else
 			(*i)++;
