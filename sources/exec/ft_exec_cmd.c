@@ -40,6 +40,12 @@ void	ft_child_exec(t_cmd *cmd, t_shell *sh)
 	char	**env_array;
 
 	ft_setup_child_signals();
+	if (!cmd->args || !cmd->args[0])
+	{
+		if (ft_apply_redirections(cmd, sh) != 0)
+			exit(1);
+		exit(0);
+	}
 	if (ft_apply_redirections(cmd, sh) != 0)
 		exit(1);
 	if (ft_is_builtin(cmd->args[0]))
@@ -63,6 +69,8 @@ int	ft_exec_cmd(t_cmd *cmd, t_shell *sh)
 {
 	pid_t	pid;
 
+	if (!cmd->args || !cmd->args[0])
+		return (0);
 	if (!cmd->next && ft_is_builtin(cmd->args[0]))
 		return (ft_run_builtin(cmd, sh));
 	pid = fork();

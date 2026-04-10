@@ -42,7 +42,10 @@ int	ft_validate_cmd(t_cmd *cmd, t_shell *sh)
 	t_redir	*redir;
 	int		ret;
 
-	ret = ft_check_cmd_access(cmd, sh);
+	// ret = ft_check_cmd_access(cmd, sh);
+	ret = 1;
+	if (cmd->args && cmd->args[0])
+		ret = ft_check_cmd_access(cmd, sh);
 	redir = cmd->redirs;
 	while (redir)
 	{
