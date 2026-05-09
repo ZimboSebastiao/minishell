@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 21:31:05 by zimbo             #+#    #+#             */
-/*   Updated: 2026/04/09 21:31:08 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/05/09 20:07:02 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	ft_free_heredoc_info(t_heredoc_info *info)
 		free(info);
 	}
 }
+
 
 int	ft_handle(t_cmd *cmd, char *delimiter_token, t_shell *shell)
 {

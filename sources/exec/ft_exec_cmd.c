@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 21:36:01 by zimbo             #+#    #+#             */
-/*   Updated: 2026/04/09 21:36:04 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/05/09 20:02:47 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_child_exec(t_cmd *cmd, t_shell *sh)
 	if (!path)
 	{
 		ft_put_error("command not found: ", cmd->args[0], NULL);
-		write(1, "\n", 1);
+		write(2, "\n", 1);
 		exit(127);
 	}
 	env_array = ft_env_to_array(sh->env_list);
