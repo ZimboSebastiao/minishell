@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 21:36:15 by zimbo             #+#    #+#             */
-/*   Updated: 2026/04/09 21:37:59 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/05/11 16:16:00 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,30 @@ static int	ft_wait_for_children(pid_t last_pid, t_shell *sh)
 	return (sh->exit);
 }
 
-int	ft_executor(t_cmd *list, t_shell *sh)
+static int	ft_process_heredocs(t_cmd *list, t_shell *sh)
+{
+	t_cmd	*cmd;
+	t_redir	*redir;
+
+	cmd = list;
+	while (cmd)
+	{
+		redir = cmd->redirs;
+		while (redir)
+		{
+			if (redir->type == redir_heredoc)
+			{
+				if (ft_handle(cmd, redir->file, sh) != 0)
+					return (1);
+			}
+			redir = redir->next;
+		}
+		cmd = cmd->next;
+	}
+	return (0);
+}
+
+static int	ft_run_pipeline(t_cmd *list, t_shell *sh)
 {
 	t_cmd	*cmd;
 	int		pipe_fd[2];
@@ -82,6 +105,7 @@ int	ft_executor(t_cmd *list, t_shell *sh)
 	pid_t	last_pid;
 
 	prev_pipe = -1;
+	last_pid = -1;
 	cmd = list;
 	while (cmd)
 	{
@@ -89,7 +113,8 @@ int	ft_executor(t_cmd *list, t_shell *sh)
 		pipe_fd[1] = -1;
 		if (cmd->next && pipe(pipe_fd) == -1)
 			return (perror("pipe"), 1);
-		if (!cmd->next && ft_is_builtin(cmd->args[0]) && prev_pipe == -1)
+		if (!cmd->next && cmd->args && cmd->args[0]
+			&& ft_is_builtin(cmd->args[0]) && prev_pipe == -1)
 			return (ft_run_builtin(cmd, sh));
 		last_pid = ft_execute_command(cmd, sh, pipe_fd, prev_pipe);
 		sh->last_pid = last_pid;
@@ -102,4 +127,15 @@ int	ft_executor(t_cmd *list, t_shell *sh)
 	ft_wait_for_children(last_pid, sh);
 	ft_setup_interactive_signals();
 	return (sh->exit);
+}
+
+int	ft_executor(t_cmd *list, t_shell *sh)
+{
+	if (ft_process_heredocs(list, sh) != 0)
+	{
+		sh->exit = 130;
+		ft_setup_interactive_signals();
+		return (130);
+	}
+	return (ft_run_pipeline(list, sh));
 }

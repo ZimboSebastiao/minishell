@@ -6,7 +6,7 @@
 /*   By: zimbo <zimbo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 21:30:19 by zimbo             #+#    #+#             */
-/*   Updated: 2026/04/09 21:30:23 by zimbo            ###   ########.fr       */
+/*   Updated: 2026/05/09 20:23:39 by zimbo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static int	ft_handle_redir_type(t_redir *redir, t_cmd *cmd, t_shell *shell)
 {
+	(void)shell;
 	if (redir->type == REDIR_IN)
 		return (ft_redir_input(cmd, redir->file));
 	if (redir->type == REDIR_OUT)
@@ -22,7 +23,7 @@ static int	ft_handle_redir_type(t_redir *redir, t_cmd *cmd, t_shell *shell)
 	if (redir->type == redir_append)
 		return (ft_redir_append(cmd, redir->file));
 	if (redir->type == redir_heredoc)
-		return (ft_handle(cmd, redir->file, shell));
+		return (0);
 	return (1);
 }
 
